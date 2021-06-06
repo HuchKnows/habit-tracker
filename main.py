@@ -49,7 +49,7 @@ headers = {
 pixel_creation_endpoint = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}"
 
 pixel_data = {
-    "date": today.strftime("%Y%m%d"),
+    "date": "20210605",
     "quantity": "9.74",
 }
 
@@ -57,18 +57,27 @@ pixel_data = {
 # response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
 # print(response.text)
 
+"""EDIT A PIXEL"""
+
 
 def edit_pixel():
     """edits pixel based on date supplied by user input"""
     date = input("Enter the date that you would like to edit(yyyyMMdd): ")
     quantity = input("Enter the updated quantity: ")
     pixel_edit_endpoint = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}/{date}"
-
-    pixel_edit_data = {
-        "quantity": quantity
-    }
-
-    return requests.put(url=pixel_edit_endpoint, json=pixel_edit_data, headers=headers)
+    pixel_edit_data = {"quantity": quantity}
+    response = requests.put(url=pixel_edit_endpoint, json=pixel_edit_data, headers=headers)
+    return response.text
 
 
-print(edit_pixel())
+# print(edit_pixel())
+
+def delete_pixel():
+    """deletes a pixel based on date supplied by user input"""
+    date = input("Enter the date that you would like to delete(yyyyMMdd): ")
+    pixel_deletion_endpoint = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}/{date}"
+    response = requests.delete(url=pixel_deletion_endpoint, headers=headers)
+    return response.text
+
+
+# print(delete_pixel())
