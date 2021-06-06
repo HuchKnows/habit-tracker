@@ -9,7 +9,7 @@
 import requests
 from datetime import datetime
 
-USERNAME = "huchknows"
+USERNAME = ""
 TOKEN = ""
 GRAPH_ID = "graph1"
 
